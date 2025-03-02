@@ -12,7 +12,7 @@ label_encoders = joblib.load('label_encoders.pkl')
 
 @app.route('/', methods=['GET'])
 def hello():
-    print('Hello World')
+    return "Hello World"
 
 @app.route('/predict', methods=['POST'])
 def predict():
