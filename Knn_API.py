@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import joblib
 import numpy as np
 import pandas as pd
+import os
 
 app = Flask(__name__)
 
@@ -48,4 +49,5 @@ def predict():
     return jsonify({'prediction': result_df.to_dict(orient='records')})
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    port = int(os.getenv('PORT', 10000))
+    app.run(host='0.0.0.0', port=port)

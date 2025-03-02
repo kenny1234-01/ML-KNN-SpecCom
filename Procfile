@@ -1,0 +1,1 @@
+web: gunicorn Knn_API:app
