@@ -10,6 +10,10 @@ app = Flask(__name__)
 model = joblib.load('knn_model_k3.pkl')
 label_encoders = joblib.load('label_encoders.pkl')
 
+@app.route('/', methods=['GET'])
+def hello():
+    print('Hello World')
+
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json()
@@ -44,7 +48,6 @@ def predict():
 
     # รวมข้อมูลของสเปคคอมพิวเตอร์และอันดับ class เข้าไว้ใน DataFrame เดียวกัน
     result_df = pd.concat([df, ranking_df], axis=1)
-    print(result_df)
 
     return jsonify({'prediction': result_df.to_dict(orient='records')})
 
